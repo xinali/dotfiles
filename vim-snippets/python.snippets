@@ -94,7 +94,6 @@ snippet rc4
 	        S[i], S[j] = S[j], S[i]
 	        res += chr(ord(d) ^ S[(S[i] + S[j]) % 256])
 	    return res 
-
 snippet rsa
 	def egcd(a, b):
 	    if a == 0:

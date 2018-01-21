@@ -8,33 +8,26 @@ set nocompatible               " be iMproved
 
 " Check if vim-plug installed
 if empty(glob('~/.vim/autoload/plug.vim'))
-    echo "vim-plug not installed!"
-    if confirm("Install vim-plug now?", "&Yes\n&No", 1)==1
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
-else
-    call plug#begin('~/.vim/plugged')
-
-    " --- Plugins ---
-    Plug 'vim-scripts/L9'
-    Plug 'othree/vim-autocomplpop'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'majutsushi/tagbar'
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'L4ys/molokai'
-    Plug 'tpope/vim-surround'
-    Plug 'sheerun/vim-polyglot'
-    if has("mac") || has("macunix")
-        Plug 'msanders/cocoa.vim'
-    endif
-
-    call plug#end()
+    echo "Installing vim-plug..."
+    silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'vim-scripts/L9'
+Plug 'othree/vim-autocomplpop'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'L4ys/molokai'
+Plug 'tpope/vim-surround'
+Plug 'sheerun/vim-polyglot'
+Plug 'msanders/cocoa.vim'
+call plug#end()
 
 "==============================================================
 ">  General
@@ -159,7 +152,8 @@ endif
 set nobackup
 set nowb
 set noswapfile
-set noundofile
+set undodir=~/.vim/undo/
+set undofile
 
 "==============================================================
 ">  Text, tab and indent related
@@ -181,7 +175,6 @@ set tw=500
 
 set ai   " Auto indent
 set si   " Smart indent
-set wrap " Wrap lines
 
 " Remove preview window
 set completeopt-=preview
@@ -240,15 +233,6 @@ set viminfo^=%
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-
-"autocmd BufWrite *.py,*.coffee,*.js,*.html,*.c,*.cpp,*.xm :call DeleteTrailingWS()
 
 "==============================================================
 ">  Misc

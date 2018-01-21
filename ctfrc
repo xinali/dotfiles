@@ -9,16 +9,6 @@ alias asm-a64="aarch64-linux-gnu-as -aln -o /dev/null"
 alias lddd="LD_TRACE_LOADED_OBJECTS=1"
 alias NOASLR="setarch `uname -m` -R"
 
-u14()
-{
-    if docker ps -a | grep -q "ubuntu14";  then
-        docker start ubuntu14 > /dev/null
-        docker exec -it ubuntu14 /bin/bash
-    else
-        docker run --privileged -p 4000:4000 -h ubuntu14 -v $HOME:$HOME -v $HOME/CTF:/CTF/ --name=ubuntu14 -it lays/ubuntu14
-    fi
-}
-
 aslr()
 {
     if [ -z $1 ]; then
@@ -45,7 +35,6 @@ libc()
     echo "libc_execve= libc_base + 0x$libc_execve"
     echo "libc_sh = libc_base + 0x$libc_sh"
     echo "libc_magic = libc_base + 0x$libc_magic"
-    
 }
 
 asm2elf()
@@ -359,9 +348,4 @@ rsa-dec()
         local OUTPUT=${3:-"$2.dec"}
         openssl rsautl -decrypt -inkey $1 -in $2 -out $OUTPUT
     fi
-}
-
-angr()
-{
-    docker run -it --rm -v $(pwd):/home/angr/work angr/angr
 }

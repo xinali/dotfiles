@@ -102,6 +102,7 @@ export CLICOLOR=1
 export TERM=screen-256color
 export PIN_ROOT="$HOME/bin/pin"
 
+alias ..="cd .."
 alias gdb="gdb -q"
 alias pwndbg="gdb -x ~/pwndbg/gdbinit.py"
 alias tmux="tmux -2"
@@ -109,13 +110,13 @@ alias rip="curl orange.tw"
 alias tip="curl --socks5 127.0.0.1:9150 orange.tw"
 alias tcurl="curl --socks5 127.0.0.1:9150 "
 alias tssh="ssh -o 'ProxyCommand /usr/bin/nc -x 127.0.0.1:9150 %h %p'"
-alias rssh="ssh -NfR 12345:localhost:22 "
-alias lssh="ssh -NfL 12345:localhost:12345 "
+alias rssh="ssh -NfR 12345:localhost:22"
+alias lssh="ssh -NfL 12345:localhost:12345"
 alias strace="strace -ixv"
 alias ltrace="ltrace -iC"
 alias objdump="objdump -M intel"
-alias len="expr length "
-alias fuck="killall -9 "
+alias len="expr length"
+alias fuck="killall -9"
 alias djson="python -m json.tool"
 alias folders="find . -maxdepth 1 -type d -print0 | xargs -0 du -skh | sort -rn"
 
@@ -150,20 +151,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Env
     source /usr/local/bin/virtualenvwrapper.sh
 fi
-
-function de() 
-{
-    docker exec -it $1 bash
-}
-
-function tunnel()
-{
-    if [ $# != 4 ]; then
-        echo "tunnel <LOCAL PORT> <DEST HOST> <DEST PORT> <host>"
-    else
-        ssh -NfL $1:$2:$3 $4
-    fi
-}
 
 function tunnel()
 {
