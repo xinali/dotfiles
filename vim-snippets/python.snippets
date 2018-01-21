@@ -3,8 +3,8 @@ snippet pwn
 	# -*- coding: utf-8 -*-
 	from pwn import *   # pip install pwntools
 	
-	if "remote" in sys.argv:
-		r = remote("localhost", 4000)
+	if args.REMOTE:
+	    r = remote("localhost", 4000)
 	else:
 		r = process("./bin")
 	
