@@ -116,4 +116,17 @@ snippet rsa
 	# d = modinv(e,(p-1)*(q-1))
 	# c = 
 	# m = pow(c, d, N)
-
+snippet color
+	RED = '\033[91m'
+	GREEN = '\033[92m'
+	YELLOW = '\033[93m'
+	BLUE = '\033[94m'
+	ENDC = '\033[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
+snippet get
+	r = requests.get("${1}")
+	print r.content
+snippet post
+	r = requests.post("${1}", data={})
+	print r.content

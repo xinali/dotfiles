@@ -3,7 +3,7 @@
 set nocompatible               " be iMproved
 
 "==============================================================
-"> vim-plug 
+"> vim-plug
 "==============================================================
 
 " Check if vim-plug installed
@@ -15,18 +15,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'vim-scripts/L9'
-Plug 'othree/vim-autocomplpop'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'majutsushi/tagbar'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'L4ys/molokai'
-Plug 'tpope/vim-surround'
-Plug 'sheerun/vim-polyglot'
-Plug 'msanders/cocoa.vim'
+    Plug 'vim-scripts/L9'
+    Plug 'othree/vim-autocomplpop'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'L4ys/molokai'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'kshenoy/vim-signature'
+    Plug 'msanders/cocoa.vim'
 call plug#end()
 
 "==============================================================
@@ -50,12 +51,6 @@ let mapleader = ","
 let $LANG="en_US.utf-8"
 set encoding=utf-8
 set fileencodings=usc-bom,utf-8,big5,taiwan,chinese,default,latin1
-
-" Turn off expand tab in makefile
-autocmd FileType make setlocal noexpandtab
-
-" Indent 2 for html / css
-autocmd BufNewFile,BufRead *.html,*.htm,*.css setlocal tabstop=2 shiftwidth=2
 
 "==============================================================
 ">  VIM user interface
@@ -118,11 +113,11 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Always show the status line
-set laststatus=2
-
 " hold shift to select and copy text
 set mouse=a
+
+" Always show status line
+set laststatus=2
 
 "==============================================================
 ">  Colors and Fonts
@@ -179,21 +174,18 @@ set si   " Smart indent
 " Remove preview window
 set completeopt-=preview
 
+" Turn off expand tab in makefile
+autocmd FileType make setlocal noexpandtab
+
+" Indent 2 for html / css
+autocmd BufNewFile,BufRead *.html,*.htm,*.css setlocal tabstop=2 shiftwidth=2
+
 " Auto save and load fold setting
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent loadview
 
 " Hightlight from start of file
 au BufEnter * :syntax sync fromstart
-
-"==============================================================
-">  Visual mode related
-"==============================================================
-
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>
-vnoremap <silent> # :call VisualSelection('b')<CR>
 
 "==============================================================
 ">  Moving around, tabs, windows and buffers
@@ -233,57 +225,6 @@ set viminfo^=%
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-"==============================================================
-">  Misc
-"==============================================================
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-noremap <Leader>M :%s/\r/\r/g<CR>
-
-"==============================================================
-">  Helper functions
-"==============================================================
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-let $in_hex=0
-function! ToggleHex()
-    "set binary
-    "set noeol
-    if $in_hex>0
-        :%!xxd -r
-        let $in_hex=0
-    else
-        :%!xxd
-        let $in_hex=1
-    endif
-endfunction
-
 "==============================================================
 ">  Other
 "==============================================================
@@ -315,6 +256,23 @@ noremap <leader>v :vsplit <C-R>=expand("%:p:h")<CR>/
 " Redraw, useful in terminal when screen getr messed up
 nnoremap <leader>rr :redraw!<CR>
 
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <leader>M :%s/\r/\r/g<CR>
+
+" No space when join lines
+nnoremap J gJ
+
+" keep selection after indent
+vnoremap < <gv
+vnoremap > >gv
+
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
+
+" Disable F1
+noremap <F1> <Esc>
+
 " <F2> toggles paste mode
 set pastetoggle=<F2>
 
@@ -325,10 +283,6 @@ imap <silent><F3> <C-O><F3>
 " <F4> toggles line wrap
 noremap <silent> <F4> :set wrap!<CR>
 imap <silent><F4> <C-O><F4>
-
-" <F5> toggles hex edit
-noremap <silent> <F5> :call ToggleHex()<CR>
-imap <silent><F5> <C-O><F5>
 
 " <F6> syntax sync
 noremap <F6> <Esc>:syntax sync fromstart<CR>
@@ -342,16 +296,12 @@ imap <silent><F7> <C-O><F7>
 noremap <silent> <F10> :set foldenable!<CR>
 imap <silent> <F10> <C-O><F10>
 
-" <F12> toggles tagbar
-noremap <silent> <F12> :TagbarToggle<CR>
-imap <silent> <F12> <C-O><F12>
-
 "==============================================================
 "> Plugins
 "==============================================================
 
 " ctrlp
-let g:ctrlp_custom_ignore = { 
+let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git$\|\.hg$:|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
     \ 'file': '\.exe$\|\.so$\|\.dat$'
     \ }
@@ -379,7 +329,7 @@ let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
-let g:airline#extensions#whitespace#enabled = 0 
+let g:airline#extensions#whitespace#enabled = 1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
