@@ -148,7 +148,7 @@ complete -W "$(cat ~/.ssh/known_hosts 2>&1|  cut -f 1 -d ' ' | sed -e s/,.*//g |
 
 # virtualenvwrapper
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    export WORKON_HOME=~/Env
+    export WORKON_HOME=~/.env
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
@@ -167,38 +167,4 @@ if [ "$(uname)" == "Darwin" ]; then
     alias ls="ls -G"
     alias hidedesk="defaults write com.apple.finder CreateDesktop false;killall Finder"
     alias showdesk="defaults write com.apple.finder CreateDesktop true;killall Finder"
-elif [ "$(uname -o)" == "Cygwin" ]; then
-    chcp.com 437 > /dev/null    # set codepage to 437
-
-    if [ ! -z $BABUN_HOME ]; then 
-        # Fix babun bug of reload .bashrc
-        [[ -z ${USER_BASHRC} ]] && USER_BASHRC="1" || return
-
-        # Relink Tools folder for portable use
-        [[ -e ~/Tools/ ]] && rm -f ~/Tools
-            
-        export TOOLS=$(dirname $BABUN_HOME)
-        ln -s $TOOLS ~/Tools
-
-        export PATH=$PATH:$TOOLS:$TOOLS/java/bin
-        export JAVA_HOME=$TOOLS/java
-
-        alias big5="iconv -f big5"
-        alias sqlmap="~/Tools/sqlmap/sqlmap.py"
-        alias dex2jar="~/Tools/dex2jar/d2j-dex2jar.bat"
-        alias apktool="~/Tools/apktool/apktool.bat"
-
-        # pin
-        alias pin="~/Tools/pin/pin"
-        export PIN_ROOT="$TOOLS/pin"
-
-        # msvc
-        alias vc9="~/Tools/VC9/setenv"
-        alias vc12="~/Tools/VC12/setenv"
-        alias clexe="vc9 cl.exe /MD /EHsc /Oi /O2 /Gy /nologo "
-        alias cldll="vc9 cl.exe /LD /link "
-        alias deaslr="vc9 link.exe /edit /dynamicbase:NO "
-
-        unset PYTHONHOME
-    fi
 fi
