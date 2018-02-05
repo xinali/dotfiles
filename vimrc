@@ -312,7 +312,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\.exe$\|\.so$\|\.dat$'
     \ }
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_cmd = 'CtrlPMru'
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_switch_buffer = 'Et'
 
 " leader + b to open buffer list with ctrlp
