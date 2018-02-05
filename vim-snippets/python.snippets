@@ -6,7 +6,7 @@ snippet pwn
 	if args.REMOTE:
 	    r = remote("localhost", 4000)
 	else:
-		r = process("./bin")
+	    r = process("./bin")
 	
 	r.interactive()
 snippet angr
@@ -20,8 +20,8 @@ snippet angr
 	p = angr.Project("./vul", load_options={"auto_load_libs": False})
 	
 	add_options = {
-		#"BYPASS_UNSUPPORTED_SYSCALL",
-		#simuvex.o.LAZY_SOLVES,
+	    #"BYPASS_UNSUPPORTED_SYSCALL",
+	    #simuvex.o.LAZY_SOLVES,
 	}
 	st = p.factory.entry_state(add_options=add_options)
 	#argv1 = claripy.BVS("argv1", 8 * 100)
@@ -130,3 +130,12 @@ snippet get
 snippet post
 	r = requests.post("${1}", data={})
 	print r.content
+snippet ror
+	def rol(val, r_bits, size=32):
+	    return ((val & (2**size-1)) >> r_bits%size) | \
+	           (val << (size-(r_bits%size)) & (2**size-1))
+snippet rol
+	def rol(val, r_bits, size=32):
+	    return (val << r_bits%size) & (2**size-1) | \
+	           ((val & (2**size-1)) >> (size-(r_bits%size)))
+
