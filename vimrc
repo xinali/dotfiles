@@ -70,6 +70,9 @@ set ruler
 " Height of the command bar
 set cmdheight=1
 
+" show cmd
+set showcmd
+
 " A buffer becomes hidden when it is abandoned
 set hid
 
@@ -256,6 +259,9 @@ noremap <leader>v :vsplit <C-R>=expand("%:p:h")<CR>/
 " Redraw, useful in terminal when screen getr messed up
 nnoremap <leader>rr :redraw!<CR>
 
+" Remove trailing whitespace
+nnoremap <leader><space> :%s/\s\+$//e<CR>
+
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 noremap <leader>M :%s/\r/\r/g<CR>
@@ -306,7 +312,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\.exe$\|\.so$\|\.dat$'
     \ }
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlPMru'
+let g:ctrlp_switch_buffer = 'Et'
 
 " leader + b to open buffer list with ctrlp
 nmap <leader>b :CtrlPBuffer<CR>
