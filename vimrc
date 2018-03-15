@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
     Plug 'sheerun/vim-polyglot'
-    Plug 'kshenoy/vim-signature'
     Plug 'msanders/cocoa.vim'
 call plug#end()
 
@@ -259,8 +258,11 @@ noremap <leader>v :vsplit <C-R>=expand("%:p:h")<CR>/
 " Redraw, useful in terminal when screen getr messed up
 nnoremap <leader>rr :redraw!<CR>
 
+" Replace tab with space
+nnoremap <leader><tab> :%s/\t/    /g<CR>
+
 " Remove trailing whitespace
-nnoremap <leader><space> :%s/\s\+$//e<CR>
+nnoremap <leader><space> :%s/\s\+$//e<CR>:noh<CR>
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
