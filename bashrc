@@ -167,4 +167,6 @@ if [ "$(uname)" == "Darwin" ]; then
     alias ls="ls -G"
     alias hidedesk="defaults write com.apple.finder CreateDesktop false;killall Finder"
     alias showdesk="defaults write com.apple.finder CreateDesktop true;killall Finder"
+    source $(brew --prefix)/etc/profile.d/autojump.sh
 fi
+
