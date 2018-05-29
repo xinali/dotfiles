@@ -91,6 +91,7 @@ __git_ps1()
 }
 
 [ -f ~/.ctfrc ] && . ~/.ctfrc
+[ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -151,6 +152,8 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/.env
     source /usr/local/bin/virtualenvwrapper.sh
 fi
+
+# autojump
 
 function tunnel()
 {
