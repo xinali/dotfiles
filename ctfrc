@@ -53,6 +53,12 @@ asm2elf64()
     rm -f $OBJ 2>&1 > /dev/null
 }
 
+makelib()
+{
+    local OUTPUT=${2:-"hook.so"}
+    gcc -fPIC -shared $1 -o $OUTPUT
+}
+
 c2s()
 {
     local OUTPUT=${2:-"sc.bin"}
