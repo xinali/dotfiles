@@ -172,6 +172,7 @@ set tw=500
 
 set ai   " Auto indent
 set si   " Smart indent
+set ci   " C indent
 
 " Remove preview window
 set completeopt-=preview
