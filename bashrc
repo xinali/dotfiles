@@ -164,7 +164,7 @@ function tunnel()
     fi
 }
 
-# OSX and Cygwin
+# OSX
 if [ "$(uname)" == "Darwin" ]; then
     export LSCOLORS="Exfxcxdxbxegedabagacad"
     alias ls="ls -G"
