@@ -153,8 +153,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-# autojump
-
 function tunnel()
 {
     if [ $# != 4 ]; then
@@ -162,6 +160,11 @@ function tunnel()
     else
         ssh -NfL $1:$2:$3 $4
     fi
+}
+
+function docker-shell()
+{
+    docker exec -it $1 /bin/bash
 }
 
 # OSX
