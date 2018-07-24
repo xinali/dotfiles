@@ -236,7 +236,7 @@ map 0 ^
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Copy to system clipboard by Ctrl-C
 if has("mac") || has("macunix")
