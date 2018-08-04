@@ -5,7 +5,6 @@ all: clean
 	ln -s ${HOME}/.dotfiles/gitconfig ${HOME}/.gitconfig
 	ln -s ${HOME}/.dotfiles/inputrc ${HOME}/.inputrc
 	ln -s ${HOME}/.dotfiles/pythonrc ${HOME}/.pythonrc
-	ln -s ${HOME}/.dotfiles/tmux-osx.conf ${HOME}/.tmux-osx.conf
 	ln -s ${HOME}/.dotfiles/tmux.conf ${HOME}/.tmux.conf
 	mkdir -p ${HOME}/.idapro/
 	ln -s ${HOME}/.dotfiles/idauser.cfg ${HOME}/.idapro/idauser.cfg
