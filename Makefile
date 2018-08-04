@@ -20,7 +20,6 @@ clean:
 	rm -rf ${HOME}/.gitconfig
 	rm -rf ${HOME}/.inputrc
 	rm -rf ${HOME}/.pythonrc
-	rm -rf ${HOME}/.tmux-osx.conf
 	rm -rf ${HOME}/.tmux.conf
 	rm -rf ${HOME}/.idapro/idauser.cfg
 	rm -rf ${HOME}/.vimrc
