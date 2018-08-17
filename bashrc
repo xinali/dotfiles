@@ -105,6 +105,7 @@ export PIN_ROOT="$HOME/bin/pin"
 
 alias ..="cd .."
 alias gdb="gdb -q"
+alias gdbm="gdb-multiarch -q"
 alias pwndbg="gdb -x ~/pwndbg/gdbinit.py"
 alias tmux="tmux -2"
 alias rip="curl orange.tw"
