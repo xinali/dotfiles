@@ -25,7 +25,7 @@ class Attach(GenericCommand):
         procname = procname.split("/")[-1]
         print("Attach to {:s}...".format(procname))
         try:
-            pid = next(filter(lambda x: x != str(get_pid()), gef_execute_external(["/bin/pidof", procname]).split()))
+            pid = next(filter(lambda x: x != str(get_pid()), gef_execute_external(["/bin/pidof", procname]).strip().split()))
         except Exception as e:
             print("No such process")
             return
