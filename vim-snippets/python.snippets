@@ -131,7 +131,7 @@ snippet post
 	r = requests.post("${1}", data={})
 	print r.content
 snippet ror
-	def rol(val, r_bits, size=32):
+	def ror(val, r_bits, size=32):
 	    return ((val & (2**size-1)) >> r_bits%size) | \
 	           (val << (size-(r_bits%size)) & (2**size-1))
 snippet rol
@@ -144,4 +144,5 @@ snippet pack
 	p64 = lambda x: struct.pack("<I", x)
 	u32 = lambda x: struct.unpack("<I", x)[0]
 	u64 = lambda x: struct.unpack("<Q", x)[0]
-
+snippet fp
+	from pwn import *
