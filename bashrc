@@ -107,7 +107,7 @@ alias ..="cd .."
 alias gdb="gdb -q"
 alias gdbm="gdb-multiarch -q"
 alias pwndbg="gdb -x ~/pwndbg/gdbinit.py"
-alias tmux="tmux -2"
+alias tmux="history -n;tmux -2"
 alias rip="curl orange.tw"
 alias tip="curl --socks5 127.0.0.1:9050 orange.tw"
 alias tcurl="curl --socks5 127.0.0.1:9050 "
@@ -136,6 +136,7 @@ alias egrep='egrep --color=auto'
 # Less Colors for Man Pages
 export PAGER="$(which less) -s"
 export BROWSER="$PAGER"
+export LESS='-R'
 export LESS_TERMCAP_mb=$'\E[38;5;167m'  # begin blinking
 export LESS_TERMCAP_md=$'\E[38;5;39m'   # begin bold
 export LESS_TERMCAP_me=$'\E[0m'         # end mode
@@ -154,7 +155,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-function tunnel()
+tunnel()
 {
     if [ $# != 4 ]; then
         echo "tunnel <LOCAL PORT> <DEST HOST> <DEST PORT> <host>"
@@ -163,7 +164,7 @@ function tunnel()
     fi
 }
 
-function docker-shell()
+docker-shell()
 {
     docker exec -it $1 /bin/bash
 }
@@ -171,9 +172,10 @@ function docker-shell()
 # OSX
 if [ "$(uname)" == "Darwin" ]; then
     export LSCOLORS="Exfxcxdxbxegedabagacad"
+    export HOMEBREW_NO_ANALYTICS=1
     alias ls="ls -G"
-    alias hidedesk="defaults write com.apple.finder CreateDesktop false;killall Finder"
-    alias showdesk="defaults write com.apple.finder CreateDesktop true;killall Finder"
+    alias deskshow="defaults write com.apple.finder CreateDesktop false;killall Finder"
+    alias deskhide="defaults write com.apple.finder CreateDesktop true;killall Finder"
     source $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 
