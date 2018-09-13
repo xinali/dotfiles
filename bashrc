@@ -176,6 +176,7 @@ if [ "$(uname)" == "Darwin" ]; then
     alias ls="ls -G"
     alias deskshow="defaults write com.apple.finder CreateDesktop false;killall Finder"
     alias deskhide="defaults write com.apple.finder CreateDesktop true;killall Finder"
+    alias bubu="brew update && brew upgrade && brew cleanup"
     source $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 
