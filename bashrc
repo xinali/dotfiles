@@ -53,12 +53,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    if [ -f /.dockerenv ]; then
-        PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
-    elif [ "$(id -u)" = "0" ]; then
+    if [ "$(id -u)" = "0" ]; then
         PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
     else
-        PS1='\[\033[38;5;214m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
+        PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
     fi
 else
     PS1='\u@\h:\w\$ '
@@ -171,6 +169,7 @@ docker-shell()
 
 # OSX
 if [ "$(uname)" == "Darwin" ]; then
+    PS1='\[\033[38;5;214m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
     export LSCOLORS="Exfxcxdxbxegedabagacad"
     export HOMEBREW_NO_ANALYTICS=1
     alias ls="ls -G"
