@@ -90,13 +90,13 @@ __git_ps1()
 
 [ -f ~/.ctfrc ] && . ~/.ctfrc
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
+[ -f ~/.pythonrc ] && export PYTHONSTARTUP="$HOME/.pythonrc"
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 export PATH=~/bin:$PATH
 export EDITOR=vim
-export PYTHONSTARTUP="$HOME/.pythonrc"
 export CLICOLOR=1
 export TERM=screen-256color
 export PIN_ROOT="$HOME/bin/pin"
@@ -167,7 +167,7 @@ docker-shell()
     docker exec -it $1 /bin/bash
 }
 
-# OSX
+# OSX / Windows
 if [ "$(uname)" == "Darwin" ]; then
     PS1='\[\033[38;5;214m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
     export LSCOLORS="Exfxcxdxbxegedabagacad"
@@ -177,5 +177,8 @@ if [ "$(uname)" == "Darwin" ]; then
     alias deskhide="defaults write com.apple.finder CreateDesktop true;killall Finder"
     alias bubu="brew update && brew upgrade && brew cleanup"
     source $(brew --prefix)/etc/profile.d/autojump.sh
+elif [ "$(uname -o)" == "Msys" ]; then
+    export MSYS="winsymlinks:lnk"
+    alias python="winpty python"
 fi
 
