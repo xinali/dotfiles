@@ -11,7 +11,7 @@ all: clean
 	mkdir -p ${HOME}/.idapro/
 	ln -s ${HOME}/.dotfiles/idauser.cfg ${HOME}/.idapro/idauser.cfg
 	ln -s ${HOME}/.dotfiles/vimrc ${HOME}/.vimrc
-	mkdir -p ${HOME}/.vim/
+	mkdir -p ${HOME}/.vim/undo
 	ln -s ${HOME}/.dotfiles/vim-snippets ${HOME}/.vim/snippets
 
 clean:
