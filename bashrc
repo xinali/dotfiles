@@ -180,5 +180,8 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(uname -o)" == "Msys" ]; then
     export MSYS="winsymlinks:lnk"
     alias python="winpty python"
+    alias ping="winpty ping"
+    alias ifconfig="ipconfig | iconv -f big5"
+    alias curl="curl -s"
 fi
 

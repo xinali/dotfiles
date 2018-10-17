@@ -18,7 +18,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-scripts/L9'
     Plug 'othree/vim-autocomplpop'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'SirVer/ultisnips'
+    if has("python") || has("python3")
+        Plug 'SirVer/ultisnips'
+    endif
     Plug 'honza/vim-snippets'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -242,6 +244,9 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 if has("mac") || has("macunix")
     vmap <silent><C-c> :w !pbcopy<CR><CR>
     noremap <silent><leader>c :w !pbcopy<CR><CR>
+elseif has("windows")
+    vmap <silent><C-c> :w !clip<CR><CR>
+    noremap <silent><leader>c :w !clip<CR><CR>
 endif
 
 " Daily routines
