@@ -1,10 +1,12 @@
 set nocompatible
 set encoding=utf-8
-set lines=45 
-set columns=120 
+
+" set for gui vim
+" set lines=45 
+" set columns=120 
 " set font in linux set guifont=Monospace\ 14
 " set font in windows
-set guifont=Consolas:h12
+" set guifont=Consolas:h12
 
 " for gvim
 set guioptions-=T  
