@@ -1,5 +1,6 @@
 all: clean
 	ln -s ${HOME}/.dotfiles/bashrc ${HOME}/.bashrc
+	ln -s ${HOME}/.dotfiles/zshrc ${HOME}/.zshrc
 	ln -s ${HOME}/.dotfiles/ctfrc ${HOME}/.ctfrc
 	ln -s ${HOME}/.dotfiles/gdbinit ${HOME}/.gdbinit
 	ln -s ${HOME}/.dotfiles/gef.rc ${HOME}/.gef.rc
