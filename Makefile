@@ -28,3 +28,4 @@ clean:
 	rm -rf ${HOME}/.idapro/idauser.cfg
 	rm -rf ${HOME}/.vimrc
 	rm -rf ${HOME}/.vim/snippets
+	rm -rf ${HOME}/.zshrc
