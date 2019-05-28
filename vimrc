@@ -9,9 +9,9 @@ set encoding=utf-8
 " set guifont=Consolas:h12
 
 " for gvim
-set guioptions-=T  
-set guioptions-=m  
-colorscheme murphy 
+" set guioptions-=T  
+" set guioptions-=m  
+" colorscheme murphy 
 
 " c coding indent, turn off when use python 
 set ci
