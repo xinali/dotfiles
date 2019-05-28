@@ -1,4 +1,6 @@
-source ~/.gdbinit-gef.py 
+# source ~/.gdbinit-gef.py 
+source /opt/pwndbg/gdbinit.py
+# source /opt/peda/peda.py
 
 # Keep a history of all the commands typed. Search is possible using ctrl-r
 set history save on
