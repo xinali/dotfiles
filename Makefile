@@ -1,4 +1,4 @@
-all: clean
+all: clean pre
 	ln -s ${HOME}/.dotfiles/bashrc ${HOME}/.bashrc
 	ln -s ${HOME}/.dotfiles/zshrc ${HOME}/.zshrc
 	ln -s ${HOME}/.dotfiles/ctfrc ${HOME}/.ctfrc
@@ -29,3 +29,8 @@ clean:
 	rm -rf ${HOME}/.vimrc
 	rm -rf ${HOME}/.vim/snippets
 	rm -rf ${HOME}/.zshrc
+
+pre:
+	# install vim-plug
+	curl -fLo ~/.vim/plugin/NERD_Commenter.vim --create-dirs \
+		https://raw.githubusercontent.com/scrooloose/nerdcommenter/master/plugin/NERD_commenter.vim
