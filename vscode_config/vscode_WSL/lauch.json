@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "(gdb) Launch ratconfig",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "ratconfig",
+            "args": [
+                "-p",
+                "/mnt/d/special",
+                "-l",
+                "palevo.log",
+                "-e",
+                "error.log"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/mnt/d/Dropbox/ratconfig/src/build/",
+            "environment": [],
+            "externalConsole": true,
+            "pipeTransport": {
+                "pipeCwd": "",
+                "pipeProgram": "c:\\windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "linux": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            },
+            "sourceFileMap": {
+                "/mnt/d": "D:\\"
+            },
+            "preLaunchTask": "Build" 
+        }
+    ]
+}
