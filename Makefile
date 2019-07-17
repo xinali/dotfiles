@@ -1,6 +1,6 @@
 all: clean pre
 	@if [ ! -d ~/.dotfiles ]; then\
-	 	exit 1\
+	 	exit 1;\
 	fi
 	ln -s ${HOME}/.dotfiles/bashrc ${HOME}/.bashrc
 	ln -s ${HOME}/.dotfiles/zshrc ${HOME}/.zshrc
