@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CompileLatest",
+            "type": "shell",
+            "command": [
+                "git reset --hard 973a8c929b4fb204dd8fcc84cd12ff02c1ea8aab && make clean && CC=clang make"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/tx/build/linux/gcc/debug/"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "CompileOld",
+            "type": "shell",
+            "command": [
+                "git reset --hard 2c20c666e9a7c5a2c4992ea8a6ab53887f63334c && make clean && CC=clang make"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/tx/build/linux/gcc/debug/"
+            },
+            "problemMatcher": []
+        },
+
+    ]
+}
